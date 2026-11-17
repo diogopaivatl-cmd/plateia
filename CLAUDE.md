@@ -40,6 +40,23 @@ Fora do MVP: pagamentos, área do aluno, agenda de mentorias, integração por A
 - **Marca do cliente.** A interface e os e-mails mostram a marca do cliente (logo, cores, nome do remetente), não a da Plateia.
 - **Interface em português do Brasil**, linguagem simples, pensada para quem não é técnico.
 
+## Decisões técnicas já tomadas
+
+- **Next.js 16** (App Router). Esta versão difere do que muitos modelos conhecem: consulte `node_modules/next/dist/docs/` antes de usar uma API nova (ver `AGENTS.md`).
+- **`src/middleware.ts` em runtime Edge**, e não `proxy.ts`: o proxy do Next 16 roda em Node e é experimental no OpenNext/Cloudflare. O aviso de "middleware deprecated" no build é esperado.
+- **`cacheComponents` desligado**: quase todas as telas dependem do usuário logado.
+- **Fonte Geist pelo pacote `geist`** (auto-hospedada), sem depender do Google Fonts no build.
+- **Supabase:** projeto `plateia` (ref `iigvtcqtmmgcbahheqdv`, `sa-east-1`). URL e chave publicável ficam em `src/lib/supabase/config.ts` (são públicas). A chave secreta nunca entra no código.
+- **Login:** link mágico por e-mail, piloto fechado (`shouldCreateUser: false`). Usuários novos são criados no painel do Supabase. No primeiro acesso, a pessoa cria a conta da marca via `criar_conta` (função `security definer` intencional; o aviso do linter sobre ela é esperado).
+- **Funções auxiliares de RLS** ficam no schema `privado`, fora da Data API.
+
+## Comandos
+
+- `npm run dev`: desenvolvimento local (http://localhost:3000)
+- `npm run lint` e `npm run typecheck`: checagens
+- `npm run preview`: build da Cloudflare rodando localmente
+- `npm run deploy`: publica na Cloudflare (precisa de login no wrangler)
+
 ## Como trabalhar neste repositório
 
 - Sempre apresentar um plano antes de escrever código e esperar aprovação.
