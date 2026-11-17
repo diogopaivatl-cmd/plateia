@@ -50,6 +50,9 @@ Fora do MVP: pagamentos, área do aluno, agenda de mentorias, integração por A
 - **Login:** link mágico por e-mail, piloto fechado (`shouldCreateUser: false`). Usuários novos são criados no painel do Supabase. No primeiro acesso, a pessoa cria a conta da marca via `criar_conta` (função `security definer` intencional; o aviso do linter sobre ela é esperado).
 - **Funções auxiliares de RLS** ficam no schema `privado`, fora da Data API (`is_membro`, `is_dono`).
 - **Marca do cliente:** mora em `contas.marca` (jsonb; formato documentado em `supabase/migrations/0004_marcas_storage.sql`). Logos ficam no bucket público `marcas`, na pasta `<conta_id>/`; só membros da conta gravam nela. A área `/painel` aplica as cores como variáveis CSS (`--cor-primaria`, `--cor-secundaria`, `--cor-destaque`, `--cor-apoio`, `--cor-fundo`). Use sempre essas variáveis, nunca cores fixas, em telas do cliente. Só o dono edita a marca (`/painel/marca`).
+- **Importação de planilhas** (`/painel/importar`): o arquivo é lido no navegador (`papaparse` para CSV, `read-excel-file` para .xlsx), o usuário confirma o significado de cada coluna (`src/lib/importar/campos.ts`) e as linhas vão ao banco em lotes de 500 pela função `importar_lote` (SECURITY INVOKER, então o RLS vale). Pessoas são deduplicadas por e-mail; dados existentes nunca são sobrescritos, só completados. Importar **não** cria consentimento de newsletter, a não ser que exista uma coluna de aceite explícito. Planilhas fictícias para teste ficam em `public/exemplos/`.
+- **Componente `Plateia`** (`src/components/plateia.tsx`): visualização em meia-lua usada na importação. É a identidade visual do produto; reaproveite em telas de resumo.
+- **Estado do projeto e próximos passos:** veja `docs/PROXIMOS-PASSOS.md`.
 
 ## Comandos
 

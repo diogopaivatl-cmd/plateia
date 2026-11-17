@@ -5,8 +5,7 @@ import { CriarConta } from "./criar-conta";
 export const metadata = { title: "Painel · Plateia" };
 
 const proximasEtapas = [
-  { titulo: "Importar", texto: "Suba as planilhas do Sympla e do Google Forms." },
-  { titulo: "Pessoas", texto: "Uma ficha por pessoa, com todo o histórico." },
+  { titulo: "Ficha completa", texto: "Todo o histórico de cada pessoa em uma tela." },
   { titulo: "Formulários", texto: "Pesquisas que caem direto na ficha de cada pessoa." },
   { titulo: "Newsletter", texto: "Envie para grupos filtrados, com consentimento." },
   { titulo: "Assistente", texto: "Insights da sua base e do seu mercado." },
@@ -42,7 +41,7 @@ export default async function PainelPage() {
           className="mt-6 flex items-center justify-between rounded-2xl border border-[var(--cor-primaria)]/30 bg-white px-6 py-4 text-sm"
         >
           <span>Deixe a Plateia com a cara da sua marca: envie seu logo e confira suas cores.</span>
-          <span className="font-semibold text-[var(--cor-primaria)]">Configurar marca →</span>
+          <span className="font-semibold text-[var(--cor-primaria)]">Configurar marca</span>
         </Link>
       ) : null}
 
@@ -55,6 +54,21 @@ export default async function PainelPage() {
           <p className="text-sm text-stone-500">Projetos</p>
           <p className="mt-1 text-4xl font-bold text-[var(--cor-secundaria)]">{projetos.count ?? 0}</p>
         </div>
+      </div>
+
+      <div className="mt-8 flex flex-wrap gap-3">
+        <Link
+          href="/painel/importar"
+          className="rounded-full bg-[var(--cor-primaria)] px-6 py-3 font-semibold text-white transition hover:opacity-90"
+        >
+          Importar planilha
+        </Link>
+        <Link
+          href="/painel/pessoas"
+          className="rounded-full px-6 py-3 font-semibold text-[var(--cor-secundaria)] ring-1 ring-black/15 transition hover:bg-white"
+        >
+          Ver pessoas
+        </Link>
       </div>
 
       <h2 className="mt-12 text-lg font-semibold text-[var(--cor-secundaria)]">Em construção</h2>
