@@ -8,8 +8,9 @@ Atualizado em 17/11/2026. Leia junto com o `CLAUDE.md`, que tem as regras e as d
 | --- | --- |
 | 1. Fundação (login, contas, app no ar) | Pronta e testada em produção |
 | Marca do cliente (logo, cores, remetente) | Pronta; falta subir os logos pela tela "Sua marca" |
-| 2. Importar planilhas | Pronta no branch `etapa-2-importar`; falta testar logado em produção |
-| 3. Unificar (ficha completa da pessoa) | Próxima etapa de código |
+| 2. Importar planilhas | Pronta e publicada; falta testar logado em produção |
+| Painel "Sua plateia" (tela inicial) | **Próxima tarefa, já aprovada** (ver item 0 abaixo) |
+| 3. Unificar (ficha completa da pessoa) | Depois do painel |
 | 4. Formulário próprio | A fazer |
 | 5. Comunicar (newsletter) | A fazer; depende do domínio e do Resend |
 | 6. Assistente de IA | A fazer |
@@ -35,15 +36,35 @@ Atualizado em 17/11/2026. Leia junto com o `CLAUDE.md`, que tem as regras e as d
 
 ## Pendências manuais (Diogo ou Fernanda)
 
-1. **Juntar o PR da etapa 2** e testar a importação logado em produção, com as planilhas de `public/exemplos/`.
+1. **Testar a importação** logado em produção, com as planilhas de `public/exemplos/`. Quem importa é o Diogo; a Fernanda só explora o painel.
 2. **Subir os logos** em "Sua marca": `presenca-plena-logo.svg` (fundo claro) e `presenca-plena-logo-creme.svg` (fundo escuro).
 3. **Criar o usuário da Fernanda** no Supabase (Authentication → Users → Add user, com Auto Confirm). O e-mail dela está com o Diogo; não deve ficar no repositório.
-4. **Fernanda troca os servidores DNS** no registro.br para os da Cloudflare (tabela acima). Atenção ao DNSSEC: se houver registro ativo, removê-lo antes.
+4. **Servidores DNS:** a Fernanda informou que trocou em 17/11, mas às 19h20 a zona ainda estava "pending" na Cloudflare, e o DNS público ainda mostrava `a.auto.dns.br`. Se continuar assim, pedir print da tela do registro.br. Atenção ao DNSSEC.
 5. **Pedir à Fernanda as exportações reais** (participantes do Sympla e respostas do Google Forms) para afinar o reconhecimento de colunas.
 
 ## Próximas tarefas para o Claude Code
 
 Sempre apresentar o plano e esperar aprovação antes de escrever código.
+
+### 0. Painel "Sua plateia": a tela inicial que encanta (aprovado pelo Diogo em 17/11)
+
+Objetivo: quando a Fernanda entrar, ela precisa **ver o potencial do negócio dela** nos próprios dados, não uma lista de contadores. Quem importa as planilhas é o Diogo; a Fernanda explora. Substitui o conteúdo atual de `/painel` (contadores + "Em construção").
+
+1. **Abertura:** o componente `Plateia` com a base inteira, colorida por perfil (pessoal, líder, empresa, sem perfil), com uma frase-resumo do tipo "Sua plateia tem 64 pessoas em 3 projetos".
+2. **Temas mais pedidos:** ranking (top 8), agrupado nas trilhas Eu, Relações e Equipes. Os 10 temas atuais do formulário dela se dividem assim:
+    - **Eu:** inteligência emocional e autorregulação; presença e linguagem corporal; oratória e posicionamento; reputação profissional.
+    - **Relações:** CNV; escuta ativa e comunicação empática; feedback; gestão de conflitos.
+    - **Equipes:** segurança psicológica; colaboração e relações de confiança.
+
+    Gravar a trilha em `tags.trilha`, com uma tela simples para corrigir. Responde com dados à dúvida dela sobre onde focar: pessoa física ou empresas.
+3. **Quem volta:** pessoas em 2 ou mais projetos, as candidatas naturais à mentoria.
+4. **Projetos:** cada evento com inscritos, presentes e taxa de presença.
+5. **Pronto para a newsletter:** quantas pessoas têm aceite ativo.
+6. **Prévia da assistente:** 2 ou 3 observações calculadas por regras sobre os dados reais (ainda sem IA), por exemplo "Feedback é o tema mais pedido entre líderes". Nada inventado: só o que os números mostram.
+
+Implementação sugerida: uma função SQL `painel_resumo(p_conta_id)` (SECURITY INVOKER) que devolve tudo em um JSON, para a página fazer uma única consulta. Seguir a marca do cliente (variáveis CSS) e o padrão visual das telas de importação. Revisar por print no desktop e no celular antes de abrir o PR.
+
+**Dados para a demonstração:** o Diogo importa as duas planilhas de `public/exemplos/` na conta Presença Plena. A Fernanda deve ser avisada de que são dados de exemplo. Quando chegarem as exportações reais, apagar as pessoas `@example.com` (e o que estiver ligado a elas) e importar os dados de verdade.
 
 ### A. Passar a conta para a Fernanda (quando o usuário dela existir)
 - Inserir a Fernanda em `membros` como `dono` da conta Presença Plena.
