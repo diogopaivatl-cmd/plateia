@@ -1,0 +1,55 @@
+Número do pedido,Nome,Sobrenome,E-mail,Telefone,Tipo de ingresso,Check-in,Data do check-in
+PED48120,André,Esteves,andre.esteves@example.com,(79) 98808-1791,Cortesia,Sim,14/11/2026 19:01
+PED48121,Eduarda,Vieira,eduarda.vieira@example.com,(79) 98192-6991,Meia-entrada,Não,
+PED48122,Thiago,Barbosa,thiago.barbosa@example.com,(79) 99863-9313,Inteira,Sim,14/11/2026 19:38
+PED48123,Olívia,Barbosa,olivia.barbosa@example.com,(79) 98176-8104,Meia-entrada,Não,
+PED48124,Gustavo,Cardoso,gustavo.cardoso@example.com,(79) 98492-2486,Cortesia,Não,
+PED48125,Rafael,Queiroz,rafael.queiroz@example.com,(79) 98121-3028,Meia-entrada,Não,
+PED48126,Patrícia,Xavier,patricia.xavier@example.com,(79) 99940-2013,Inteira,Sim,14/11/2026 19:14
+PED48127,Sérgio,Xavier,sergio.xavier@example.com,(79) 98812-1812,Meia-entrada,Sim,14/11/2026 19:13
+PED48128,Patrícia,Barbosa,patricia.barbosa@example.com,(79) 99140-3181,Cortesia,Sim,14/11/2026 19:00
+PED48129,Vanessa,Queiroz,vanessa.queiroz@example.com,(79) 98295-9858,Cortesia,Sim,14/11/2026 19:22
+PED48130,Helena,Xavier,helena.xavier@example.com,(79) 98631-3961,Inteira,Não,
+PED48131,Gabriela,Xavier,gabriela.xavier@example.com,(79) 99169-4078,Inteira,Não,
+PED48132,Diego,Dias,diego.dias@example.com,(79) 99121-2028,Cortesia,Não,
+PED48133,Sérgio,Barbosa,sergio.barbosa@example.com,(79) 99267-4374,Meia-entrada,Sim,14/11/2026 19:11
+PED48134,Marcelo,Vieira,marcelo.vieira@example.com,(79) 98875-6146,Cortesia,Sim,14/11/2026 19:21
+PED48135,João,Xavier,joao.xavier@example.com,(79) 99891-8424,Cortesia,Sim,14/11/2026 19:25
+PED48136,Diego,Machado,diego.machado@example.com,(79) 98508-3945,Cortesia,Sim,14/11/2026 19:05
+PED48137,Renata,Cardoso,renata.cardoso@example.com,(79) 99176-5919,Inteira,Sim,14/11/2026 19:08
+PED48138,Otávio,Santana,otavio.santana@example.com,(79) 99792-6627,Cortesia,Sim,14/11/2026 19:29
+PED48139,Igor,Machado,igor.machado@example.com,(79) 99247-2199,Inteira,Não,
+PED48140,Helena,Teixeira,helena.teixeira@example.com,(79) 98856-3702,Cortesia,Sim,14/11/2026 19:30
+PED48141,Bruno,Esteves,bruno.esteves@example.com,(79) 99911-9011,Meia-entrada,Sim,14/11/2026 19:09
+PED48142,Gustavo,Barbosa,gustavo.barbosa@example.com,(79) 99970-2271,Inteira,Sim,14/11/2026 19:01
+PED48143,Rafael,Xavier,rafael.xavier@example.com,(79) 99616-6140,Cortesia,Sim,14/11/2026 19:06
+PED48144,Bruno,Oliveira,bruno.oliveira@example.com,(79) 99217-9137,Inteira,Sim,14/11/2026 19:27
+PED48145,Thiago,Ramos,thiago.ramos@example.com,(79) 98140-2533,Inteira,Não,
+PED48146,Tatiana,Santana,tatiana.santana@example.com,(79) 99427-2064,Inteira,Não,
+PED48147,Daniela,Machado,daniela.machado@example.com,(79) 99325-8301,Inteira,Sim,14/11/2026 19:18
+PED48148,Vanessa,Pereira,vanessa.pereira@example.com,(79) 99816-6685,Cortesia,Sim,14/11/2026 19:20
+PED48149,Beatriz,Ramos,beatriz.ramos@example.com,(79) 98727-3753,Meia-entrada,Sim,14/11/2026 19:08
+PED48150,Wagner,Dias,wagner.dias@example.com,(79) 99011-1965,Cortesia,Sim,14/11/2026 19:22
+PED48151,Olívia,Machado,olivia.machado@example.com,(79) 98264-5056,Cortesia,Não,
+PED48152,Felipe,Pereira,felipe.pereira@example.com,(79) 99877-9134,Cortesia,Sim,14/11/2026 19:26
+PED48153,Fernanda,Farias,fernanda.farias@example.com,(79) 98919-7580,Cortesia,Não,
+PED48154,Rafael,Lima,rafael.lima@example.com,(79) 99809-3243,Inteira,Sim,14/11/2026 19:33
+PED48155,Henrique,Vieira,henrique.vieira@example.com,(79) 98570-7804,Meia-entrada,Sim,14/11/2026 19:11
+PED48156,Carlos,Pereira,carlos.pereira@example.com,(79) 99961-4780,Inteira,Sim,14/11/2026 19:11
+PED48157,Juliana,Cardoso,juliana.cardoso@example.com,(79) 98360-3478,Cortesia,Sim,14/11/2026 19:07
+PED48158,Patrícia,Henriques,patricia.henriques@example.com,(79) 98024-8945,Meia-entrada,Sim,14/11/2026 19:33
+PED48159,Thiago,Farias,thiago.farias@example.com,(79) 98538-5619,Meia-entrada,Sim,14/11/2026 19:06
+PED48160,Ana,Esteves,ana.esteves@example.com,(79) 98858-9758,Inteira,Não,
+PED48161,Diego,Zanetti,diego.zanetti@example.com,(79) 99159-6220,Meia-entrada,Sim,14/11/2026 19:02
+PED48162,Isabela,Teixeira,isabela.teixeira@example.com,(79) 99946-1884,Cortesia,Sim,14/11/2026 19:28
+PED48163,João,Vieira,joao.vieira@example.com,(79) 98803-7521,Inteira,Sim,14/11/2026 19:28
+PED48164,Gabriela,Santana,gabriela.santana@example.com,(79) 99299-7560,Cortesia,Sim,14/11/2026 19:38
+PED48165,Daniela,Gomes,daniela.gomes@example.com,(79) 98137-4420,Cortesia,Sim,14/11/2026 19:17
+PED48166,Igor,Farias,igor.farias@example.com,(79) 98225-6571,Cortesia,Sim,14/11/2026 19:30
+PED48167,Vinícius,Barbosa,vinicius.barbosa@example.com,(79) 98209-1003,Inteira,Sim,14/11/2026 19:33
+PED48168,Sérgio,Esteves,sergio.esteves@example.com,(79) 99098-2662,Meia-entrada,Não,
+PED48169,Beatriz,Cardoso,beatriz.cardoso@example.com,(79) 99790-4407,Inteira,Não,
+PED48170,Wagner,Pereira,wagner.pereira@example.com,(79) 98304-5132,Inteira,Não,
+PED48171,Carlos,Zanetti,carlos.zanetti@example.com,(79) 98745-8768,Meia-entrada,Sim,14/11/2026 19:28
+PED48190,Rosa,Menezes,,(79) 98877-1122,Inteira,Não,
+PED48191,Olívia,Barbosa,OLIVIA.BARBOSA@EXAMPLE.COM,(79) 98176-8104,Inteira,Sim,14/11/2026 19:05

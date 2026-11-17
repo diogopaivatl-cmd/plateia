@@ -12,7 +12,7 @@ export default async function PainelLayout({ children }: LayoutProps<"/painel">)
       style={estiloDaMarca(marca)}
     >
       <header className="border-b border-black/10 bg-white">
-        <div className="mx-auto flex w-full max-w-5xl items-center justify-between gap-6 px-6 py-4">
+        <div className="mx-auto flex w-full max-w-5xl flex-wrap items-center justify-between gap-x-6 gap-y-3 px-6 py-4">
           <Link href="/painel" className="flex items-center gap-3">
             {marca?.logo_url ? (
               // eslint-disable-next-line @next/next/no-img-element
@@ -28,11 +28,21 @@ export default async function PainelLayout({ children }: LayoutProps<"/painel">)
             )}
           </Link>
 
-          <nav className="flex items-center gap-5 text-sm">
+          <nav className="flex flex-wrap items-center justify-end gap-x-5 gap-y-2 text-sm">
             {conta ? (
               <Link href="/painel" className="text-stone-600 hover:text-stone-900">
                 Início
               </Link>
+            ) : null}
+            {conta ? (
+              <>
+                <Link href="/painel/pessoas" className="text-stone-600 hover:text-stone-900">
+                  Pessoas
+                </Link>
+                <Link href="/painel/importar" className="text-stone-600 hover:text-stone-900">
+                  Importar
+                </Link>
+              </>
             ) : null}
             {conta?.papel === "dono" ? (
               <Link href="/painel/marca" className="text-stone-600 hover:text-stone-900">
