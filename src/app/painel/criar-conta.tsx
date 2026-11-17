@@ -24,13 +24,13 @@ export function CriarConta() {
             minLength={2}
             maxLength={120}
             placeholder="Ex.: Presença Plena"
-            className="rounded-xl border border-stone-300 px-4 py-3 text-base outline-none focus:border-violet-600 focus:ring-2 focus:ring-violet-200"
+            className="rounded-xl border border-stone-300 px-4 py-3 text-base outline-none focus:border-[var(--cor-primaria)] focus:ring-2 focus:ring-[var(--cor-primaria)]/20"
           />
         </label>
         <button
           type="submit"
           disabled={pendente}
-          className="rounded-full bg-violet-700 px-6 py-3 font-semibold text-white transition hover:bg-violet-800 disabled:opacity-60"
+          className="rounded-full bg-[var(--cor-primaria)] px-6 py-3 font-semibold text-white transition hover:opacity-90 disabled:opacity-60"
         >
           {pendente ? "Criando..." : "Criar minha conta"}
         </button>

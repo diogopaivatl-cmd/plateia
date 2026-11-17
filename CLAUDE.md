@@ -48,7 +48,8 @@ Fora do MVP: pagamentos, área do aluno, agenda de mentorias, integração por A
 - **Fonte Geist pelo pacote `geist`** (auto-hospedada), sem depender do Google Fonts no build.
 - **Supabase:** projeto `plateia` (ref `iigvtcqtmmgcbahheqdv`, `sa-east-1`). URL e chave publicável ficam em `src/lib/supabase/config.ts` (são públicas). A chave secreta nunca entra no código.
 - **Login:** link mágico por e-mail, piloto fechado (`shouldCreateUser: false`). Usuários novos são criados no painel do Supabase. No primeiro acesso, a pessoa cria a conta da marca via `criar_conta` (função `security definer` intencional; o aviso do linter sobre ela é esperado).
-- **Funções auxiliares de RLS** ficam no schema `privado`, fora da Data API.
+- **Funções auxiliares de RLS** ficam no schema `privado`, fora da Data API (`is_membro`, `is_dono`).
+- **Marca do cliente:** mora em `contas.marca` (jsonb; formato documentado em `supabase/migrations/0004_marcas_storage.sql`). Logos ficam no bucket público `marcas`, na pasta `<conta_id>/`; só membros da conta gravam nela. A área `/painel` aplica as cores como variáveis CSS (`--cor-primaria`, `--cor-secundaria`, `--cor-destaque`, `--cor-apoio`, `--cor-fundo`). Use sempre essas variáveis, nunca cores fixas, em telas do cliente. Só o dono edita a marca (`/painel/marca`).
 
 ## Comandos
 
