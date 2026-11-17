@@ -1,5 +1,5 @@
-import { redirect } from "next/navigation";
-import { createClient } from "@/lib/supabase/server";
+import Link from "next/link";
+import { getContaAtual } from "@/lib/conta";
 import { CriarConta } from "./criar-conta";
 
 export const metadata = { title: "Painel · Plateia" };
@@ -13,68 +13,59 @@ const proximasEtapas = [
 ];
 
 export default async function PainelPage() {
-  const supabase = await createClient();
-  const { data: claims } = await supabase.auth.getClaims();
-  const userId = claims?.claims?.sub;
-  if (!userId) redirect("/entrar");
+  const { supabase, conta } = await getContaAtual();
 
-  const { data: vinculo } = await supabase
-    .from("membros")
-    .select("papel, contas(id, nome)")
-    .eq("user_id", userId)
-    .limit(1)
-    .maybeSingle();
+  if (!conta) {
+    return (
+      <main className="mx-auto w-full max-w-5xl flex-1 px-6 py-12">
+        <CriarConta />
+      </main>
+    );
+  }
 
-  const conta = vinculo?.contas as { id: string; nome: string } | null | undefined;
+  const [pessoas, projetos] = await Promise.all([
+    supabase.from("pessoas").select("id", { count: "exact", head: true }).eq("conta_id", conta.id),
+    supabase.from("projetos").select("id", { count: "exact", head: true }).eq("conta_id", conta.id),
+  ]);
 
-  const [pessoas, projetos] = conta
-    ? await Promise.all([
-        supabase.from("pessoas").select("id", { count: "exact", head: true }).eq("conta_id", conta.id),
-        supabase.from("projetos").select("id", { count: "exact", head: true }).eq("conta_id", conta.id),
-      ])
-    : [null, null];
+  const semLogo = !conta.marca.logo_url;
 
   return (
-    <div className="flex flex-1 flex-col">
-      <header className="flex items-center justify-between border-b border-stone-200 bg-white px-6 py-4">
-        <div className="flex items-baseline gap-3">
-          <span className="font-bold text-violet-700">Plateia</span>
-          {conta ? <span className="text-stone-500">{conta.nome}</span> : null}
+    <main className="mx-auto w-full max-w-5xl flex-1 px-6 py-12">
+      <h1 className="text-3xl font-bold tracking-tight text-[var(--cor-secundaria)]">
+        Seu painel
+      </h1>
+
+      {semLogo && conta.papel === "dono" ? (
+        <Link
+          href="/painel/marca"
+          className="mt-6 flex items-center justify-between rounded-2xl border border-[var(--cor-primaria)]/30 bg-white px-6 py-4 text-sm"
+        >
+          <span>Deixe a Plateia com a cara da sua marca: envie seu logo e confira suas cores.</span>
+          <span className="font-semibold text-[var(--cor-primaria)]">Configurar marca →</span>
+        </Link>
+      ) : null}
+
+      <div className="mt-8 grid gap-4 sm:grid-cols-2">
+        <div className="rounded-2xl border-t-4 border-[var(--cor-primaria)] bg-white p-6 shadow-sm">
+          <p className="text-sm text-stone-500">Pessoas na base</p>
+          <p className="mt-1 text-4xl font-bold text-[var(--cor-secundaria)]">{pessoas.count ?? 0}</p>
         </div>
-        <form action="/auth/sair" method="post">
-          <button className="text-sm text-stone-600 hover:text-stone-900">Sair</button>
-        </form>
-      </header>
+        <div className="rounded-2xl border-t-4 border-[var(--cor-destaque)] bg-white p-6 shadow-sm">
+          <p className="text-sm text-stone-500">Projetos</p>
+          <p className="mt-1 text-4xl font-bold text-[var(--cor-secundaria)]">{projetos.count ?? 0}</p>
+        </div>
+      </div>
 
-      <main className="mx-auto w-full max-w-5xl flex-1 px-6 py-12">
-        {!conta ? (
-          <CriarConta />
-        ) : (
-          <>
-            <h1 className="text-3xl font-bold tracking-tight">Seu painel</h1>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              <div className="rounded-2xl border border-stone-200 bg-white p-6">
-                <p className="text-sm text-stone-500">Pessoas na base</p>
-                <p className="mt-1 text-4xl font-bold">{pessoas?.count ?? 0}</p>
-              </div>
-              <div className="rounded-2xl border border-stone-200 bg-white p-6">
-                <p className="text-sm text-stone-500">Projetos</p>
-                <p className="mt-1 text-4xl font-bold">{projetos?.count ?? 0}</p>
-              </div>
-            </div>
-
-            <h2 className="mt-12 text-lg font-semibold">Em construção</h2>
-            <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {proximasEtapas.map((etapa) => (
-                <li key={etapa.titulo} className="rounded-2xl border border-dashed border-stone-300 p-5">
-                  <p className="font-semibold">{etapa.titulo}</p>
-                  <p className="mt-1 text-sm text-stone-600">{etapa.texto}</p>
-                </li>
-              ))}
-            </ul>
-          </>
-        )}
-      </main>
-    </div>
+      <h2 className="mt-12 text-lg font-semibold text-[var(--cor-secundaria)]">Em construção</h2>
+      <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {proximasEtapas.map((etapa) => (
+          <li key={etapa.titulo} className="rounded-2xl border border-dashed border-stone-300 bg-white/60 p-5">
+            <p className="font-semibold">{etapa.titulo}</p>
+            <p className="mt-1 text-sm text-stone-600">{etapa.texto}</p>
+          </li>
+        ))}
+      </ul>
+    </main>
   );
 }
